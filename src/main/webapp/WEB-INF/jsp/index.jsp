@@ -8,6 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="th" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <html>
 <head>
     <title>Table of users </title>
@@ -28,6 +29,8 @@
             <th>ID</th>
             <th>Name</th>
             <th>Surname</th>
+            <th>login</th>
+            <th>password</th>
             <th></th>
         </tr>
         </thead>
@@ -37,46 +40,13 @@
                 <td>${user.user_id}</td>
                 <td>${user.name}</td>
                 <td>${user.surname}</td>
+                <td>${user.login}</td>
+                <td>${user.password}</td>
                 <td><a href="/delete/${user.user_id}" class="btn btn-dark">Delete</a></td>
             </tr>
         </c:forEach>
         </tbody>
     </table>
-    <h3>               </h3>
-    <h3>Add User Window</h3>
-    <button  type="button" class="btn btn-success" data-toggle="modal" data-target="#popUpWindow">Add User</button>
-
-    <div class="modal fade" id="popUpWindow">
-        <div class="modal-dialog">
-            <div class="modal-content">
-
-                <!-- header-->
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
-                <!-- body-->
-                <div class="modal-body">
-                    <form role="form" name="user" action="/addUser" method="post">
-                        <div>
-                            <p>Name</p>
-                            <input title="Name" type="name" name="name" class="form-control" placeholder="Enter name here">
-                        </div>
-                        <div>
-                            <p>Surname</p>
-                            <input title="Surname" type="surname" name="surname" class="form-control" placeholder="Enter surname here">
-
-                        </div>
-                        <div class="modal-footer">
-                            <!--<a th:href="@{/addUser}"> </a>-->
-                            <button th:th:href="@{/addUser}" class="btn btn-primary btn-block" type="submit">Ok</button>
-
-                        </div>
-                    </form>
-
-                </div>
-            </div>
-        </div>
-    </div>
 </div>
 </body>
 </html>

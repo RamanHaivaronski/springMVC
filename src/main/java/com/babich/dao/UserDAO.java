@@ -15,7 +15,10 @@ public interface UserDAO {
     @Delete("delete from users where user_id=#{id}")
     void delete(int id);
 
-    @Insert("insert into users(name, surname) values(#{name},#{surname})")
+    @Select("SELECT * FROM users WHERE login=#{login}")
+    User findByLogin(String login);
+
+    @Insert("insert into users(name, surname, login, password) values (#{name},#{surname},#{login},#{password})")
     @SelectKey(statement = "SELECT LAST_INSERT_ID()", keyProperty = "user_id", before = false, resultType=Integer.class)
     void addUser(User user);
 }
