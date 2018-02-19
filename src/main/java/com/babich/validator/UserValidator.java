@@ -36,7 +36,7 @@ public class UserValidator implements Validator {
 
         Pattern pattern = Pattern.compile("^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\\s).*$" );
         Matcher matcher= pattern.matcher(user.getPassword());
-         if (!matcher.matches())  errors.rejectValue("password", "password.erorr", "строчные и прописные латинские буквы и цифры");
+         if (!matcher.matches())  errors.rejectValue("password", "password.error", "The password should consist of uppercase and lowercase letters and numbers");
 
     }
 }

@@ -1,6 +1,7 @@
 package com.babich.controllers;
 
 import com.babich.models.User;
+import com.babich.services.SecurityService;
 import com.babich.services.UserService;
 import com.babich.validator.UserValidator;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,9 @@ public class UserController {
     @Autowired
     UserValidator userValidator;
 
+    @Autowired
+    SecurityService securityService;
+
 
     @GetMapping("/")
     public String index(Model model) {
@@ -35,11 +39,11 @@ public class UserController {
 
     }
 
-    @PostMapping("/addUser")
-    public String addUser(@ModelAttribute("user") User user) throws Exception {
-        service.addUser(user);
-        return "redirect:/";
-    }
+    //@PostMapping("/addUser")
+    //public String addUser(@ModelAttribute("user") User user) throws Exception {
+     //   service.addUser(user);
+   //     return "redirect:/";
+ //   }
 
     @GetMapping("/registration")
     public String registration(Model model) {
@@ -56,7 +60,23 @@ public class UserController {
             return "registration";
         }
         service.addUser(userForm);
+        securityService.autoLogin(userForm.getLogin(), userForm.getPassword());
         return "redirect:/";
     }
+    @GetMapping("/login")
+    public String login(Model model, String error, String logout) {
+        if (error != null) {
+            model.addAttribute("error", "Username or password is incorrect.");
+        }
+
+        if (logout != null) {
+            model.addAttribute("message", "Logged out successfully.");
+        }
+
+        return "login";
+    }
+
+
+    // post login ?????
 
 }
