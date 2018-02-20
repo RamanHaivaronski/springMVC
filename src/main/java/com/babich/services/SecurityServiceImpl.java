@@ -23,7 +23,6 @@ public class SecurityServiceImpl implements SecurityService {
         if (userDetails instanceof UserDetails) {
             return ((UserDetails) userDetails).getUsername();
         }
-
         return null;
     }
 
@@ -31,7 +30,7 @@ public class SecurityServiceImpl implements SecurityService {
     public void autoLogin(String username, String password) {
         UserDetails userDetails = userDetailsService.loadUserByUsername(username);
         UsernamePasswordAuthenticationToken authenticationToken =
-                new UsernamePasswordAuthenticationToken(userDetails.getUsername(), password, userDetails.getAuthorities());
+                new UsernamePasswordAuthenticationToken(userDetails, password, userDetails.getAuthorities());
 
 //Получаются имя пользователя и пароль и объединяются в экземпляр класса UsernamePasswordAuthenticationToken
         authenticationManager.authenticate(authenticationToken);
@@ -43,6 +42,5 @@ public class SecurityServiceImpl implements SecurityService {
             // Устанавливается контекст безопасности путем вызова SecurityContextHolder.getContext().setAuthentication(...),
             // куда передается вернувшийся экземпляр Authentication
         }
-        System.out.println("токен не прошёл проверку");
     }
 }
