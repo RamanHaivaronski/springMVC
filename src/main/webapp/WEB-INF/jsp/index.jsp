@@ -44,6 +44,7 @@
                 <td>${user.login}</td>
                 <td>${user.password}</td>
                 <td><a href="/delete/${user.user_id}" class="btn btn-dark">Delete</a></td>
+                <td><a href="/carsView/${user.user_id}" class="btn btn-dark" style="width:100%">Cars</a></td>
             </tr>
         </c:forEach>
         </tbody>
