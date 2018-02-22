@@ -27,4 +27,10 @@ public interface UserDAO {
 
     @Select("SELECT name FROM user_roles LEFT JOIN roles USING(role_id) WHERE user_id=#{id}")
     String getRoleById(int id);
+
+    @Insert("INSERT INTO user_cars(user_id, role_id) VALUES (#{user_id}, #{car_id}")
+    void addCar(int user_id, int car_id);
+
+    @Delete("DELETE FROM user_cars WHERE user_id=#{id} AND car_id=#{id}")
+    void deleteCar(int user_id, int car_id);
 }
