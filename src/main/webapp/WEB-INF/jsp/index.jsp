@@ -17,7 +17,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-    <td><a href="/logout" class="btn btn-red">Logout</a></td>
+    <td><a href="/login" class="btn btn-red">Logout</a></td>
 
 </head>
 <body>
@@ -32,7 +32,8 @@
             <th>Surname</th>
             <th>login</th>
             <th>password</th>
-            <th></th>
+            <th>Delete</th>
+            <th>Car Page</th>
         </tr>
         </thead>
         <tbody>
@@ -47,8 +48,10 @@
                 <td><a href="/carsView/${user.user_id}" class="btn btn-dark" style="width:100%">Cars</a></td>
             </tr>
         </c:forEach>
+
         </tbody>
     </table>
+
 </div>
 </body>
 </html>

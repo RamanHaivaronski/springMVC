@@ -3,8 +3,10 @@ package com.babich.services;
 import com.babich.dao.UserDAO;
 import com.babich.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.RequestDispatcher;
 import java.util.List;
 
 @Service
@@ -24,14 +26,17 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void addUser(User user) {
+        user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
         userDAO.addUser(user);
         userDAO.setRoleById(user.getUser_id());
+
 
         System.out.println(user.getLogin());
         System.out.println(user.getPassword());
         System.out.println(userDAO.getRoleById(user.getUser_id()));
 
     }
+
 
     @Override
     public User findByLogin(String login) {
