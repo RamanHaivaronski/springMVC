@@ -1,8 +1,14 @@
 package com.babich.services;
 
+import com.babich.models.Car;
+
+import java.util.List;
+
 public interface CarService {
 
-    void addCar(int user_id, int car_id);
+    List<Car> getAllCars();
 
-    void deleteCar(int user_id, int car_id);
+    void addCar(Car car);
+
+    void deleteCar(int car_id);
 }

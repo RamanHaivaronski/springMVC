@@ -28,4 +28,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         grantedAuthorities.add(new SimpleGrantedAuthority(userDao.getRoleById(user.getUser_id())));
         return  new org.springframework.security.core.userdetails.User(user.getLogin(),user.getPassword(),grantedAuthorities);
     }// вовзращает логин пароль и права
+
+    
 }

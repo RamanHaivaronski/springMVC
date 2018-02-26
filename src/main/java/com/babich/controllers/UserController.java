@@ -9,7 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 
 @Controller
@@ -22,10 +25,6 @@ public class UserController {
 
     @Autowired
     SecurityService securityService;
-
-    @Autowired
-    CarService carService;
-
 
     @GetMapping("/")
     public String index(Model model) {
@@ -40,19 +39,8 @@ public class UserController {
 
     }
 
-    @GetMapping("/carsView/{id}")
-    public String cars(){
-        return "cars";
-    }
-
-    //@PostMapping("/addUser")
-    //public String addUser(@ModelAttribute("user") User user) throws Exception {
-     //   service.addUser(user);
-   //     return "redirect:/";
- //   }
-
     @GetMapping("/registration")
-    public String registration(Model model) {
+    public String registrati4on(Model model) {
         model.addAttribute("userForm", new User());
 
         return "registration";
@@ -69,6 +57,7 @@ public class UserController {
         securityService.autoLogin(userForm.getLogin(), userForm.getPassword());
         return "redirect:/";
     }
+
     @GetMapping("/login")
     public String login(Model model, String error, String logout) {
         if (error != null) {
@@ -80,22 +69,6 @@ public class UserController {
         }
 
         return "login";
-    }
-
-
-    // post login ?????
-    // added
-    @RequestMapping(value = "/addCar/", method = RequestMethod.POST)
-    public String addCar(@RequestParam int user_id, @RequestParam int car_id) {
-
-        carService.addCar(user_id,car_id);
-        return "success";
-    }
-    @RequestMapping(value = "/deleteCar", method = RequestMethod.POST)
-    public String deleteCar(@RequestParam int user_id, int car_id) {
-
-        carService.deleteCar(user_id,car_id);
-        return "success";
     }
 
 }

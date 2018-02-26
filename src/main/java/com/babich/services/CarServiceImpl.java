@@ -1,21 +1,30 @@
 package com.babich.services;
 
+import com.babich.dao.CarDAO;
 import com.babich.dao.UserDAO;
+import com.babich.models.Car;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class CarServiceImpl implements CarService {
 
+
     @Autowired
-    UserDAO userDAO;
+    CarDAO carDAO;
 
     @Override
-    public void addCar(int user_id, int car_id) {
-        userDAO.addCar(user_id, car_id);
+    public List<Car> getAllCars() {
+        return carDAO.getAllCars();
     }
     @Override
-    public void deleteCar(int user_id, int car_id){
-        userDAO.deleteCar(user_id, car_id);
+    public void addCar(Car car) {
+        carDAO.addCar(car);
+    }
+    @Override
+    public void deleteCar(int car_id){
+        carDAO.deleteCar(car_id);
     }
 }

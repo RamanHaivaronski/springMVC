@@ -26,11 +26,6 @@ public class UserServiceImpl implements UserService {
     public void addUser(User user) {
         userDAO.addUser(user);
         userDAO.setRoleById(user.getUser_id());
-
-        System.out.println(user.getLogin());
-        System.out.println(user.getPassword());
-        System.out.println(userDAO.getRoleById(user.getUser_id()));
-
     }
 
     @Override
