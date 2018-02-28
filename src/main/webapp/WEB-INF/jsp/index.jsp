@@ -23,18 +23,19 @@
             <form id="logoutForm" method="POST" action="${contextPath}/logout">
                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
             </form>
-
+            ${pageContext.request.userPrincipal.name}
             <h2>Welcome ${pageContext.request.userPrincipal.name} | <a onclick="document.forms['logoutForm'].submit()">Logout</a>
             </h2>
 
         </c:if>
-
+        <td><a href="/carsView" class="btn btn-dark" style="width:50%">Show
+            my cars</a></td>
     </div>
 
 </head>
 <body>
 <div class="container">
-
+    <p></p>
     <p>List of Library Users</p>
     <table border="1" class="table-condensed">
         <thead>
@@ -43,8 +44,6 @@
             <th>Name</th>
             <th>Surname</th>
             <th>login</th>
-            <th>password</th>
-            <th></th>
         </tr>
         </thead>
         <tbody>
@@ -54,9 +53,8 @@
                 <td>${user.name}</td>
                 <td>${user.surname}</td>
                 <td>${user.login}</td>
-                <td>${user.password}</td>
-                <td><a href="/delete/${user.user_id}" class="btn btn-dark">Delete</a></td>
-                <td><a href="/carsView/${user.user_id}" class="btn btn-dark" style="width:100%">Cars</a></td>
+
+
             </tr>
         </c:forEach>
         </tbody>

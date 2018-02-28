@@ -55,6 +55,7 @@ public class UserController {
         }
         service.addUser(userForm);
         securityService.autoLogin(userForm.getLogin(), userForm.getPassword());
+        System.out.println(service.getUsername());
         return "redirect:/";
     }
 

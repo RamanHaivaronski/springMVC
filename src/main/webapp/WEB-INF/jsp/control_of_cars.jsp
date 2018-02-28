@@ -27,6 +27,7 @@
             <th>id</th>
             <th>brand</th>
             <th>image</th>
+
         </tr>
         </thead>
         <tbody>
@@ -35,6 +36,7 @@
                 <td>${car.car_id}</td>
                 <td>${car.brand}</td>
                 <td><img src = "${car.path}"></td>
+                <td><a href=""  </td>
 
             </tr>
         </c:forEach>

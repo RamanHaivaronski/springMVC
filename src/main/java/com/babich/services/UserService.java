@@ -9,4 +9,5 @@ public interface UserService {
     void delete(int id);
     void addUser(User user);
     User findByLogin(String login);
+    public String getUsername();
 }

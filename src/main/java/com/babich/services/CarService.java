@@ -11,4 +11,10 @@ public interface CarService {
     void addCar(Car car);
 
     void deleteCar(int car_id);
+
+    List<Car> getUserCars();
+
+    void deleteUserCar(int car_id);
+
+    List<Car> getNotUserCars();
 }
