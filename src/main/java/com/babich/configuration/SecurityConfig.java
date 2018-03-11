@@ -30,7 +30,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/carsView/**").access("hasRole('ROLE_USER')")
                 .antMatchers("/control_of_cars").access("hasRole('ROLE_ADMIN')")
                 .and().formLogin()
-                .loginPage("/login").permitAll()
                 .defaultSuccessUrl("/", false)
         ;
 

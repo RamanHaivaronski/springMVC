@@ -1,10 +1,13 @@
 package com.babich.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 public class User {
     private int user_id;
     private String name;
     private String surname;
     private String login;
+    @JsonIgnore
     private String password;
 
     public User() {
