@@ -1,3 +1,7 @@
-<p>
-  my-cars works!
-</p>
+<div class="container">
+  <div class="row">
+    <app-car-card *ngFor="let car of cars"
+                  [cards]="car">
+    </app-car-card>
+  </div>
+</div>

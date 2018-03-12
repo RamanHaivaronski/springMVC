@@ -18,7 +18,7 @@ export class UserComponent implements OnInit {
 
   getAllUsers(): void {
     this.httpClient
-      .get<User[]>('/usersAll')
+      .get<User[]>('/api/usersAll')
       .subscribe(data => {
         this.users = data;
       });

@@ -11,7 +11,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-@Controller
+import java.util.List;
+
+@RestController
+@RequestMapping("/api")
 public class CarController {
 
     @Autowired
@@ -22,10 +25,8 @@ public class CarController {
 
 
     @GetMapping("/carsView")
-    public String cars(Model model){
-        model.addAttribute("userCars",carService.getUserCars());
-        model.addAttribute("notUserCars",carService.getNotUserCars());
-        return "cars";
+    public  List<Car> getMyCar(){
+        return carService.getUserCars();
     }
 
 

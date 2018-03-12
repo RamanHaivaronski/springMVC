@@ -26,11 +26,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/").access("hasAnyRole('ROLE_USER, ROLE_ADMIN')")
-                .antMatchers("/carsView/**").access("hasRole('ROLE_USER')")
-                .antMatchers("/control_of_cars").access("hasRole('ROLE_ADMIN')")
+               //.antMatchers("/").access("hasAnyRole('ROLE_USER, ROLE_ADMIN')")
+                .antMatchers("/api/**").access("hasRole('ROLE_USER')")
+              .antMatchers("/control_of_cars").access("hasRole('ROLE_ADMIN')")
+             //   .antMatchers("/login*").anonymous()
                 .and().formLogin()
                 .defaultSuccessUrl("/", false)
+                .and()
+                .logout().logoutSuccessUrl("/login");
         ;
 
         http.csrf().disable();
