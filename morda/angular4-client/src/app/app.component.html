@@ -1,10 +1,12 @@
-<nav>
+<nav *ngIf=" isShown()">
   <div class="nav-wrapper">
-    <a href="https://st3.depositphotos.com/1225964/16821/i/1600/depositphotos_168219794-stock-photo-red-boiled-crayfish-on-wooden.jpg" class="brand-logo right">
+    <a
+      href="https://st3.depositphotos.com/1225964/16821/i/1600/depositphotos_168219794-stock-photo-red-boiled-crayfish-on-wooden.jpg"
+      class="brand-logo right">
       Team A 2018</a>
     <ul class="left hide-on-med-and-down">
-      <li><a routerLink="/users">users</a></li>
-      <li><a routerLink="/showMyCars">MyCars</a></li>
+      <li *ngIf="IsAuthorized()"><a routerLink="/users">users</a></li>
+      <li ><a  routerLink="/showMyCars">MyCars</a></li>
       <li><a (click)="logout()">Logout</a></li>
     </ul>
   </div>
@@ -13,5 +15,5 @@
 
 <div class="container">
 
-<router-outlet></router-outlet>
+  <router-outlet></router-outlet>
 </div>

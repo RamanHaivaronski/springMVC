@@ -10,14 +10,41 @@ import {AllCarsComponent} from './all-cars/all-cars.component';
 import {RouterModule} from "@angular/router";
 import {HttpClientModule} from "@angular/common/http";
 import {FormsModule} from "@angular/forms";
-import { CarCardComponent } from './my-cars/car-card/car-card.component';
+import {CarCardComponent} from './my-cars/car-card/car-card.component';
+import {AuthenticationGuard} from "./authentication/guardians/authentication.guard";
+import {SignUpComponent} from './login-page/sign-up/sign-up.component';
+
 
 
 const routs = [
-  {path: 'users', component: UserComponent},
-  {path: 'allCars', component: AllCarsComponent},
-  {path: 'login', component: LoginPageComponent},
-  {path: 'showMyCars', component: MyCarsComponent}
+  {
+    path: 'SignUp',
+    component: SignUpComponent,
+
+  },
+  {
+    path: '',
+    component: AppComponent,
+    canActivate: [AuthenticationGuard],
+  },
+  {
+    path: 'users',
+    component: UserComponent,
+    canActivate: [AuthenticationGuard],
+  },
+  {
+    path: 'allCars',
+    component: AllCarsComponent
+  },
+  {
+    path: 'login',
+    component: LoginPageComponent
+  },
+  {
+    path: 'showMyCars',
+    component: MyCarsComponent,
+    canActivate: [AuthenticationGuard],
+  }
 ];
 
 @NgModule({
@@ -27,7 +54,8 @@ const routs = [
     LoginPageComponent,
     MyCarsComponent,
     AllCarsComponent,
-    CarCardComponent
+    CarCardComponent,
+    SignUpComponent
   ],
   imports: [
     BrowserModule,
@@ -35,7 +63,7 @@ const routs = [
     HttpClientModule,
     FormsModule
   ],
-  providers: [],
+  providers: [AuthenticationGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule {

@@ -1,7 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpErrorResponse, HttpHeaders} from "@angular/common/http";
 import {Router} from "@angular/router";
-import {AutentificationService} from "./autentification.service";
+import {AutentificationService} from "../authentication/authenticationServise/autentification.service";
+import {AuthenticationGuard} from "../authentication/guardians/authentication.guard";
 
 @Component({
   selector: 'app-login-page',
@@ -9,17 +10,30 @@ import {AutentificationService} from "./autentification.service";
   styleUrls: ['./login-page.component.css']
 })
 export class LoginPageComponent implements OnInit {
-  credentials;
 
-  constructor( private autService: AutentificationService, private http: HttpClient, private router: Router) {
+
+  constructor(private autService: AutentificationService,
+              private http: HttpClient,
+              private router: Router,
+              private guard: AuthenticationGuard) {
+
   }
 
   ngOnInit() {
-    this.credentials = {username: '', password: ''};
   }
 
-  login() {
-    this.autService.Login(this.credentials);
 
+  OnSubmit(userName, password) {
+
+
+    this.http.post('http://localhost:9096/login',
+      {
+        username: userName,
+        password: password
+      })
+      .subscribe(
+        data => console.log(data)
+      );
+    this.router.navigate(['users']);
   }
 }
